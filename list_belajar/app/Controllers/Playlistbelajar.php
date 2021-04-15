@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Models\PlaylistBelajarModel;
 use App\Models\MateriBelajarModel;
+use App\Models\PlaylistBelajarModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\I18n\Time;
+
 
 
 class PlaylistBelajar extends ResourceController
@@ -15,9 +16,8 @@ class PlaylistBelajar extends ResourceController
     // get all data
     public function index()
     {
-	    $db = \Config\Database::connect();
+        $db = \Config\Database::connect();
 	    $data = $db->query("SELECT a.*, b.marked_at FROM `playlist_belajar` AS a LEFT JOIN `bookmark` AS b ON a.id_playlist = b.id_playlist ORDER BY a.id_playlist")->getResultArray();
-        
         return $this->respond($data);
     }
 
@@ -119,6 +119,7 @@ class PlaylistBelajar extends ResourceController
             $input = $this->request->getVar();
             $data = [
                 'id_akun' => $input['id_akun'],
+                'profile_pict' => $file->getName(),
                 'nama_playlist' => $input['nama_playlist'],
                 'kategori' => $input['kategori'],
                 'deskripsi' => $input['deskripsi'],

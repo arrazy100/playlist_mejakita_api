@@ -69,16 +69,19 @@ class MateriBelajar extends ResourceController
 
         // Get the File
         $file = $this->request->getFile('nama_file');
-        // Guess an extension 
-        $type = $file->guessExtension();
-        // Move File into Specific Folder
-        $file->move('../public/files/');
+        if ($file != '') {
+            // Guess an extension 
+            $type = $file->guessExtension();
+            // Move File into Specific Folder
+            $file->move('../public/files');
+        }
 
         $model1 = new KontenModel();
         $data_konten = [
             'id_materi' => $id_materi['id_materi'],
             'id_tipe' => $id_tipe,
-            'nama_file' => $file->getName()
+            'nama_file' => $file->getName(),
+            'link' => $this->request->getVar('link')
         ];
         $model1->insert($data_konten);
 
@@ -92,7 +95,7 @@ class MateriBelajar extends ResourceController
             'status' => 201,
             'error' => null,
             'messages' => [
-                'success' => 'Data Saved '
+                'success' => 'Data Saved ' . $file
             ]
         ];
         return $this->respondCreated($response);
@@ -123,28 +126,38 @@ class MateriBelajar extends ResourceController
 
             // Get the File
             $file = $this->request->getFile('nama_file');
+            if ($file != '' || $file_lama != '') {
+                // Guess an extension 
+                $type = $file->guessExtension();
+            }
             $filename = $file->getName();
-            // Guess an extension 
-            $type = $file->guessExtension();
 
             // check the file is already filled or not
-            if ($filename != $file_lama) {
-                // Delete Old Files
-                unlink("../public/files/$file_lama");
-                // Move File into Specific Folder
-                $file->move('../public/files');
-
-                // $input = $this->request->getRawInput();
-                $data_konten = [
-                    'nama_file' => $file->getName()
-                ];
-                $model1->update($id, $data_konten);
+            if ($filename != '' || $filename != $file_lama) {
+                if ($filename != $file_lama && $file_lama != '') {
+                    // Delete Old Files
+                    unlink("../public/files/$file_lama");
+                }
+                if ($filename != '') {
+                    // Move File into Specific Folder
+                    $file->move('../public/files');
+                }
             }
+
+            // $input = $this->request->getRawInput();
+            $data_konten = [
+                'nama_file' => $file->getName(),
+                'link' => $this->request->getVar('link')
+            ];
+            $model1->update($id, $data_konten);
+
+
+
             $response = [
                 'status' => 200,
                 'error' => null,
                 'messages' => [
-                    'success' => 'Data Updated ' . $filename
+                    'success' => 'Data Updated ' . $file_lama
                 ]
             ];
             return $this->respond($response);

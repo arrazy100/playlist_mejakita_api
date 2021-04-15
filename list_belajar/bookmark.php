@@ -9,6 +9,7 @@ use CodeIgniter\API\ResponseTrait;
 class Bookmark extends ResourceController
 {
     use ResponseTrait;
+
     // get all data
     public function index()
     {
@@ -78,7 +79,6 @@ class Bookmark extends ResourceController
         }
     }
 
-    // list bookmarked with account id
     public function list_bookmarked($id_akun = null)
     {
 	    $db = \Config\Database::connect();
@@ -87,7 +87,6 @@ class Bookmark extends ResourceController
         return $this->respond($data);
     }
 
-    // delete bookmarked with account id
     public function delete_bookmarked($id_akun = null, $id_playlist = null)
     {
         $db = \Config\Database::connect();

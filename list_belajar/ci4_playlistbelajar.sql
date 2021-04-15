@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 15, 2021 at 08:52 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Host: 127.0.0.1
+-- Generation Time: Apr 14, 2021 at 09:31 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,13 +34,6 @@ CREATE TABLE `bookmark` (
   `marked_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `bookmark`
---
-
-INSERT INTO `bookmark` (`id_bookmark`, `id_akun`, `id_playlist`, `marked_at`) VALUES
-(30, 1, 3, '2021-04-15 13:12:00');
-
 -- --------------------------------------------------------
 
 --
@@ -55,14 +48,6 @@ CREATE TABLE `konten` (
   `link` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `konten`
---
-
-INSERT INTO `konten` (`id_materi`, `id_tipe`, `id_file`, `nama_file`, `link`) VALUES
-(5, 4, 5, NULL, 'https://www.youtube.com/embed/zpOULjyy-n8?rel=0'),
-(6, 2, 6, 'CV.pdf', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -76,14 +61,6 @@ CREATE TABLE `materi` (
   `nama_materi` varchar(255) NOT NULL,
   `updated_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `materi`
---
-
-INSERT INTO `materi` (`id_playlist`, `id_materi`, `id_tipe`, `nama_materi`, `updated_at`) VALUES
-(2, 5, 4, 'Video 1', '2021-04-14 10:40:14'),
-(2, 6, 2, 'Catatan', '2021-04-14 17:23:11');
 
 -- --------------------------------------------------------
 
@@ -102,15 +79,6 @@ CREATE TABLE `playlist_belajar` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `playlist_belajar`
---
-
-INSERT INTO `playlist_belajar` (`id_akun`, `id_playlist`, `profile_pict`, `nama_playlist`, `kategori`, `deskripsi`, `views`, `created_at`, `updated_at`) VALUES
-(1, 2, 'alligator.png', 'DNA adalah jalan hidupku', 'Biologi', 'Ada', 143, '2021-04-14 10:11:47', '2021-04-14 10:40:14'),
-(4, 3, 'web_design.png', 'Organ', 'Biologi', 'Halo', 17, '2021-04-14 11:06:56', '2021-04-14 11:06:56'),
-(5, 4, 'web_design_1.png', 'Buaya', 'Bahasa Indonesia', 'Aku adalah anak gembala', 17, '2021-04-14 11:12:37', '2021-04-14 11:12:37');
 
 -- --------------------------------------------------------
 
@@ -169,25 +137,25 @@ ALTER TABLE `playlist_belajar`
 -- AUTO_INCREMENT for table `bookmark`
 --
 ALTER TABLE `bookmark`
-  MODIFY `id_bookmark` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_bookmark` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `konten`
 --
 ALTER TABLE `konten`
-  MODIFY `id_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_file` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `playlist_belajar`
 --
 ALTER TABLE `playlist_belajar`
-  MODIFY `id_playlist` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_playlist` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
