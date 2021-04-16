@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Baru</title>
+</head>
+<body>
+    <form action="http://localhost:8081/index.php/playlistbelajar" method="post" enctype="multipart/form-data">
+        <input type="text" name="id_akun" id="id_akun" placeholder="id akun"><br>
+        <input type="file" name="profile_pict" id="profile_pict" accept="image/*"><br>
+        <input type="text" name="nama_playlist" id="nama_playlist" placeholder="nama playlist"><br>
+        <input type="text" name="kategori" id="kategori" placeholder="kategori"><br>
+        <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" placeholder="deskripsi"></textarea><br>
+        <button type="submit">Buat Playlist</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Baru</title>
+</head>
+<body>
+    <form action="http://localhost:8081/index.php/materibelajar" method="post" enctype="multipart/form-data">
+        <input type="text" name="id_playlist" id="id_playlist" placeholder="id playlist"><br>
+        <input type="text" name="id_tipe" id="id_tipe" placeholder="id tipe"><br>
+        <input type="text" name="nama_materi" id="nama_materi" placeholder="nama materi"><br>
+        <input type="file" name="nama_file" id="nama_file" accept="video/*, .pdf"><br>
+	<input type="text" name="link" id="link" placeholder="link"><br>
+	<p>Pilih salah satu saja, file atau link, kosongi salah satu, id_tipe 1 hanya support URL, id_tipe 2 hanya support File</p>
+        <button type="submit">Buat Materi</button>
+    </form>
+</body>
+</html>
