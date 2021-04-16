@@ -69,18 +69,19 @@ class MateriBelajar extends ResourceController
 
         // Get the File
         $file = $this->request->getFile('nama_file');
+	$filename = $file->getRandomName();
         if ($file != '') {
             // Guess an extension 
             $type = $file->guessExtension();
             // Move File into Specific Folder
-            $file->move('../public/files');
+            $file->move('../public/files', $filename);
         }
 
         $model1 = new KontenModel();
         $data_konten = [
             'id_materi' => $id_materi['id_materi'],
             'id_tipe' => $id_tipe,
-            'nama_file' => $file->getName(),
+            'nama_file' => $filename,
             'link' => $this->request->getVar('link')
         ];
         $model1->insert($data_konten);
